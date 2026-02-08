@@ -1,0 +1,106 @@
+body {
+
+    background-color: #1A0F0A;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Luckiest Guy', cursive;
+    padding: 0;
+    width: 100vw;
+    /* Forces the body to be the full width of the screen */
+
+}
+
+.main-heading {
+    font-size: 80px;
+    font-family: 'Luckiest Guy', cursive;
+    color: #e68a1e;
+    margin-bottom: 150px;
+    margin-top: 100px;
+    text-shadow: 0 5px 0 rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    top: 0px;
+    gap: 20px;
+}
+
+.easy,
+.medium,
+.hard {
+    position: relative;
+    top: 0px;
+    font-size: 2rem;
+    height: 45vh;
+    width: 40vh;
+    background-color: #e24e0acc;
+    border-radius: 25px;
+    display: flex;
+
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #f5680b5b;
+}
+
+button {
+    position: absolute;
+    bottom:30px;
+    font-family: 'Luckiest Guy', cursive;
+    font-weight: bold;
+    font-size: 24px;
+    height: 50px;
+    width: 40%;
+    border-radius: 30px;
+    border: 1px solid #000;
+    box-shadow: 3px 5px 0 #000;
+    transition: all 0.1s;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #000;
+}
+
+.easy-btn {
+    background-color: #09e709;
+}
+
+.med-btn {
+    background-color: #fa6604;
+}
+
+.hard-btn {
+    background-color: #cc0808;
+}
+
+.easy img{
+    position: absolute;
+    max-width: 550px;
+    max-height: 550px;
+    object-fit: contain;
+    left: -65px;
+    top : 120px;
+}
+
+.medium img{
+    position: absolute;
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: contain;
+    left: 60px;
+    top : 150px;
+}
+
+.hard img{
+    position: absolute;
+    max-width: 400px;
+    max-height: 400px;
+    object-fit: contain;
+    left: 10px;
+    top : 65px;
+}

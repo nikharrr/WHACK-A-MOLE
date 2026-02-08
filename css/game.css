@@ -1,0 +1,262 @@
+body {
+    background-color: #1A0F0A;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Luckiest Guy', cursive;
+      padding: 0;
+    width: 100vw; /* Forces the body to be the full width of the screen */
+}
+
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin-top : 20px;
+}
+
+.timer,
+.points {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    height: 70px;
+    width: 170px;
+    font-size: 35px;
+    background-color: #f49353;
+    border-radius: 8px;
+}
+
+.timer{
+    margin-left: 100px;
+}
+
+.points{
+    margin-right: 100px;
+}
+
+.game-board {
+    display: grid;
+    /* FIX 1: Use '1fr' instead of '300px' so the columns shrink to fit your screen */
+    
+    
+    /* FIX 2: Set a max-width in 'px' or 'vw' (percent of screen width) */
+    width: 95vw;          /* Uses 95% of the screen width */
+    max-width: 1200px;    /* Prevents it from getting absurdly wide on huge monitors */
+
+    /* FIX 3: Keep this for horizontal centering */
+    margin: 20px auto;    
+
+    /* FIX 4: Center the holes inside their grid cells */
+    justify-items: center; 
+    align-items: center;
+
+    column-gap: 70px;
+    padding: 20px;
+}
+
+.hole {
+    width: 150px;
+    height: 30px;
+    height: 30px;
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    border-radius: 0 0 50% 50% / 0 0 35px 35px;
+}
+
+
+
+.hole::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: radial-gradient(circle at center, #222, #000);
+    border-radius: 50%;
+    border: 4px solid #3d2b1f;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.hole::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    border-radius: 50%;
+    border: 4px solid #3d2b1f;
+    z-index: 3;
+    clip-path: inset(50% 0 0 0);
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.mole {
+    width: 70%;
+    height: 150px;
+    background-color: #252424;
+    border-radius: 75px 75px 0 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    z-index: 2;
+    transition: bottom 0.3s ease-out;
+    visibility: visible;
+}
+
+.mole.active {
+    bottom: 0px;
+    visibility: visible;
+}
+
+
+.mole::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 20%;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 60px 0 0 white;
+}
+
+
+.mole::after {
+    content: '';
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 18px;
+    background: #f2b435;
+    border-radius: 50%;
+    border: 1px solid #000;
+
+}
+
+.mole {
+    transition: bottom 0.3s ease-in-out;
+}
+
+
+.bomb {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #555, #111 40%, #000 100%);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) rotate(15deg);
+    bottom: -10px;
+    z-index: 2;
+    box-shadow:
+        inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+        0 8px 15px rgba(0, 0, 0, 0.6);
+    transition: bottom 0.3s ease-out;
+    visibility: visible;
+}
+
+.bomb.active {
+    bottom: 0px;
+     visibility: visible;
+}
+
+.bomb::before {
+    content: '';
+    position: absolute;
+    top: -18px;
+    left: 65%;
+    width: 6px;
+    height: 30px;
+    background: #4e342e;
+    border-radius: 3px;
+    transform: rotate(35deg);
+}
+
+.bomb::after {
+    content: '';
+    position: absolute;
+    top: -28px;
+    left: 82%;
+    width: 12px;
+    height: 12px;
+    background: #ffeb3b;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #ff9800, 0 0 25px #ff5722;
+    animation: flicker 0.1s infinite alternate;
+}
+
+@keyframes flicker {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Dim background */
+    backdrop-filter: blur(8px);    /* Blur background */
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #f49353; /* Matches your navbar */
+    padding: 50px;
+    border-radius: 20px;
+    border: 6px solid #1A0F0A;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.modal-content h1 {
+    font-size: 50px;
+    margin: 0;
+    color: #1A0F0A;
+}
+
+.modal-content p {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.restart-btn {
+    padding: 15px 30px;
+    font-size: 20px;
+    font-family: 'Luckiest Guy', cursive;
+    background-color: #1A0F0A;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.restart-btn:hover {
+    transform: scale(1.1);
+}
